@@ -4,15 +4,15 @@ package tree;
  * Created by Archi on 01.11.2017.
  */
 public interface NodeInterface {
-    Node getLeftNode();
+    NodeInterface getLeftNode();
 
-    void setLeftNode(Node leftNode);
+    void setLeftNode(NodeInterface leftNode);
 
-    Node getRightNode();
+    NodeInterface getRightNode();
 
-    void setRightNode(Node rightNode);
+    void setRightNode(NodeInterface rightNode);
 
     int getValue();
 
-    void printValue();
+    void printInfo();
 }

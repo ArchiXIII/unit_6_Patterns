@@ -144,12 +144,12 @@ public class Tree implements TreeInterface, Iterable {
         if(headNode == null){
             System.out.println("The tree is empty");
         }else {
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<NodeInterface> queue = new LinkedList<NodeInterface>();
             queue.add(headNode);
             while (!queue.isEmpty()){
-                Node node = queue.remove();
-                Node leftNode = node.getLeftNode();
-                Node rightNode = node.getRightNode();
+                NodeInterface node = queue.remove();
+                NodeInterface leftNode = node.getLeftNode();
+                NodeInterface rightNode = node.getRightNode();
                 if(leftNode != null){
                     queue.add(leftNode);
                 }

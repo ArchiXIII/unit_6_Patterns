@@ -43,9 +43,9 @@ public class Node implements NodeInterface, Comparable<Node> {
 
     public void printInfo() {
         if(leftNode == null && rightNode == null){
-            System.out.print("leaf, value " + value);
+            System.out.println("leaf, value " + value);
         }else {
-            System.out.print("branch, value " + value);
+            System.out.println("branch, value " + value);
         }
     }
 }

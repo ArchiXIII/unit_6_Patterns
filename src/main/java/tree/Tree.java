@@ -1,9 +1,6 @@
 package tree;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by Archi on 01.11.2017.
@@ -56,7 +53,7 @@ public class Tree implements TreeInterface, Iterable {
         while (!stack.isEmpty()){
             Node current = stack.pop();
             if(current.compareTo(newNod) == 0){
-                System.out.println("Found the value!");
+                System.out.println("DFS found the value!");
             }
             if (current.getLeftNode() != null) {
                 stack.push(current.getLeftNode());
@@ -81,7 +78,7 @@ public class Tree implements TreeInterface, Iterable {
         while (!queue.isEmpty()){
             Node node = queue.remove();
             if(node.compareTo(newNode) == 0){
-                System.out.println("Found the value!");
+                System.out.println("BFS found the value!");
             }
             if(node.getLeftNode() != null){
                 queue.add(node.getLeftNode());
@@ -96,22 +93,72 @@ public class Tree implements TreeInterface, Iterable {
         return countNods;
     }
 
-    public Iterator iterator() {
+    public Iterator<Integer> iterator() {
         return new Itr();
     }
 
-    private class Itr implements Iterator<NodeInterface> {
+    private class Itr implements Iterator<Integer> {
+        int cursor;       // index of next element to return
+        int lastRet = -1;
 
         public boolean hasNext() {
-            return false;
+            return cursor != countNods;
         }
 
-        public NodeInterface next() {
-            return null;
+        public Integer next() {
+            int i = cursor;
+            if (i >= countNods)
+                throw new NoSuchElementException();
+
+            Integer[] elementData = new Integer[countNods];
+            fillAnArray(elementData);
+            if (i >= elementData.length) {
+                throw new ConcurrentModificationException();
+            }
+            cursor = i + 1;
+            return elementData[lastRet = i];
+        }
+
+        private void fillAnArray(Integer[] elementData){
+            Stack<Node> stack = new Stack<Node>();
+            stack.push(headNode);
+            int index = 0;
+            while (!stack.isEmpty()){
+                Node current = stack.pop();
+                elementData[index++] = current.getValue();
+                if (current.getLeftNode() != null) {
+                    stack.push(current.getLeftNode());
+                }
+                if (current.getRightNode() != null) {
+                    stack.push(current.getRightNode());
+                }
+            }
         }
 
         public void remove() {
 
+        }
+    }
+
+    public void passByTree(){
+        if(headNode == null){
+            System.out.println("The tree is empty");
+        }else {
+            Queue<Node> queue = new LinkedList<Node>();
+            queue.add(headNode);
+            while (!queue.isEmpty()){
+                Node node = queue.remove();
+                Node leftNode = node.getLeftNode();
+                Node rightNode = node.getRightNode();
+                if(leftNode != null){
+                    queue.add(leftNode);
+                }
+                if(rightNode != null){
+                    queue.add(rightNode);
+                }
+                System.out.print("I found ");
+                node.printInfo();
+            }
         }
     }
 }

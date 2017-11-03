@@ -1,10 +1,4 @@
-import tree.Node;
 import tree.Tree;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by Черный on 02.11.2017.
@@ -19,18 +13,13 @@ public class Controller {
         tree.add(9);
         tree.add(8);
 
+        tree.dfs(5);
+        tree.bfs(9);
+
         for (Object element : tree) {
-            System.out.println("444" + element.toString());
+            System.out.println(element);
         }
 
-        Set<Integer> integers = new TreeSet<Integer>();
-        for(Integer element : integers){
-
-        }
-
-        List<Integer> integers1 = new ArrayList<Integer>();
-        for (Integer element : integers1) {
-
-        }
+        tree.passByTree();
     }
 }

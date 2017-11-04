@@ -7,7 +7,7 @@ import tree.TreeInterface;
  */
 public class Controller {
     public static void main(String[] args) {
-        TreeInterface tree = new Tree(new DFS());
+        TreeInterface tree = new Tree(new DFS());  //or without parameters
         tree.add(4);
         tree.add(5);
         tree.add(1);
@@ -21,8 +21,6 @@ public class Controller {
         System.out.println();
 
         Visitor visitor = new Visitor();
-        visitor.visitWithDFS(tree.getHeadNode());
-        System.out.println();
-        visitor.visitWithBFS(tree.getHeadNode());
+        visitor.visitGraph(tree.getHeadNode());
     }
 }

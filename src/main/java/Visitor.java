@@ -1,4 +1,3 @@
-import algorithms.BFS;
 import algorithms.DFS;
 import tree.NodeInterface;
 
@@ -10,15 +9,10 @@ import java.util.List;
 public class Visitor implements VisitorInterface{
     List<NodeInterface> nodes;
 
-    public void visitWithDFS(NodeInterface node) {
+    public void visitGraph(NodeInterface headNode) {
         DFS dfs = new DFS();
+        dfs.setHeadNode(headNode);
         nodes = dfs.getListNodes();
-        passByList();
-    }
-
-    public void visitWithBFS(NodeInterface node) {
-        BFS bfs = new BFS();
-        nodes = bfs.getListNodes();
         passByList();
     }
 

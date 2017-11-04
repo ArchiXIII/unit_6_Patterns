@@ -39,54 +39,8 @@ public class Tree implements TreeInterface, Iterable {
         }
     }
 
-    public void dfs(int value){
-        if(headNode == null){
-            System.out.println("The tree is empty");
-        }else {
-            dfsUtil(new Node(value));
-        }
-    }
-
-    private void dfsUtil(Node newNod){
-        Stack<Node> stack = new Stack<Node>();
-        stack.push(headNode);
-        while (!stack.isEmpty()){
-            Node current = stack.pop();
-            if(current.compareTo(newNod) == 0){
-                System.out.println("DFS found the value!");
-            }
-            if (current.getLeftNode() != null) {
-                stack.push(current.getLeftNode());
-            }
-            if (current.getRightNode() != null) {
-                stack.push(current.getRightNode());
-            }
-        }
-    }
-
-    public void bfs(int value){
-        if(headNode == null){
-            System.out.println("The tree is empty");
-        }else {
-            bfsUtil(new Node(value));
-        }
-    }
-
-    private void bfsUtil(Node newNode) {
-        Queue<Node> queue = new LinkedList<Node>();
-        queue.add(headNode);
-        while (!queue.isEmpty()){
-            Node node = queue.remove();
-            if(node.compareTo(newNode) == 0){
-                System.out.println("BFS found the value!");
-            }
-            if(node.getLeftNode() != null){
-                queue.add(node.getLeftNode());
-            }
-            if(node.getRightNode() != null){
-                queue.add(node.getRightNode());
-            }
-        }
+    public Node getHeadNode(){
+        return headNode;
     }
 
     public int count() {
@@ -137,28 +91,6 @@ public class Tree implements TreeInterface, Iterable {
 
         public void remove() {
 
-        }
-    }
-
-    public void passByTree(){
-        if(headNode == null){
-            System.out.println("The tree is empty");
-        }else {
-            Queue<NodeInterface> queue = new LinkedList<NodeInterface>();
-            queue.add(headNode);
-            while (!queue.isEmpty()){
-                NodeInterface node = queue.remove();
-                NodeInterface leftNode = node.getLeftNode();
-                NodeInterface rightNode = node.getRightNode();
-                if(leftNode != null){
-                    queue.add(leftNode);
-                }
-                if(rightNode != null){
-                    queue.add(rightNode);
-                }
-                System.out.print("I found ");
-                node.printInfo();
-            }
         }
     }
 }

@@ -9,12 +9,12 @@ import java.util.Stack;
 /**
  * Created by Archi on 04.11.2017.
  */
-public class DFS {
+public class DFS implements PassStrategyInterface {
     private NodeInterface headNode;
 
     List<NodeInterface> nodes;
 
-    public DFS(NodeInterface headNode){
+    public void setHeadNode(NodeInterface headNode) {
         this.headNode = headNode;
     }
 

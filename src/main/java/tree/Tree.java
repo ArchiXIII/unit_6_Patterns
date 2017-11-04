@@ -1,5 +1,8 @@
 package tree;
 
+import algorithms.BFS;
+import algorithms.PassStrategyInterface;
+
 import java.util.*;
 
 /**
@@ -9,6 +12,16 @@ public class Tree implements TreeInterface, Iterable {
     private Node headNode;
 
     private int countNods = 0;
+
+    private PassStrategyInterface strategy;
+
+    public Tree(){
+        this.strategy = new BFS();
+    }
+
+    public Tree(PassStrategyInterface strategy){
+        this.strategy = strategy;
+    }
 
     public void add(int value) {
         if(headNode == null){
@@ -52,7 +65,7 @@ public class Tree implements TreeInterface, Iterable {
     }
 
     private class Itr implements Iterator<Integer> {
-        int cursor;       // index of next element to return
+        int cursor;
         int lastRet = -1;
 
         public boolean hasNext() {
@@ -64,29 +77,18 @@ public class Tree implements TreeInterface, Iterable {
             if (i >= countNods)
                 throw new NoSuchElementException();
 
-            Integer[] elementData = new Integer[countNods];
-            fillAnArray(elementData);
-            if (i >= elementData.length) {
+            List<NodeInterface> elementData = new ArrayList<NodeInterface>();
+            fillAnList(elementData);
+            if (i >= elementData.size()) {
                 throw new ConcurrentModificationException();
             }
             cursor = i + 1;
-            return elementData[lastRet = i];
+            return elementData.get(lastRet = i).getValue();
         }
 
-        private void fillAnArray(Integer[] elementData){
-            Stack<Node> stack = new Stack<Node>();
-            stack.push(headNode);
-            int index = 0;
-            while (!stack.isEmpty()){
-                Node current = stack.pop();
-                elementData[index++] = current.getValue();
-                if (current.getLeftNode() != null) {
-                    stack.push(current.getLeftNode());
-                }
-                if (current.getRightNode() != null) {
-                    stack.push(current.getRightNode());
-                }
-            }
+        private void fillAnList(List<NodeInterface> elementData){
+            strategy.setHeadNode(headNode);
+            elementData.addAll(strategy.getListNodes());
         }
 
         public void remove() {

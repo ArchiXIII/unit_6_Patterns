@@ -1,3 +1,4 @@
+import algorithms.DFS;
 import tree.Tree;
 import tree.TreeInterface;
 
@@ -6,7 +7,7 @@ import tree.TreeInterface;
  */
 public class Controller {
     public static void main(String[] args) {
-        TreeInterface tree = new Tree();
+        TreeInterface tree = new Tree(new DFS());
         tree.add(4);
         tree.add(5);
         tree.add(1);
@@ -17,6 +18,7 @@ public class Controller {
         for (Object element : tree) {
             System.out.println(element);
         }
+        System.out.println();
 
         Visitor visitor = new Visitor();
         visitor.visitWithDFS(tree.getHeadNode());

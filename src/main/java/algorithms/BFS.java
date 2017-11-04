@@ -10,12 +10,12 @@ import java.util.Queue;
 /**
  * Created by Archi on 04.11.2017.
  */
-public class BFS {
+public class BFS implements PassStrategyInterface {
     private NodeInterface headNode;
 
     List<NodeInterface> nodes;
 
-    public BFS(NodeInterface headNode){
+    public void setHeadNode(NodeInterface headNode) {
         this.headNode = headNode;
     }
 

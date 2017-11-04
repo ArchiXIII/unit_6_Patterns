@@ -11,13 +11,13 @@ public class Visitor implements VisitorInterface{
     List<NodeInterface> nodes;
 
     public void visitWithDFS(NodeInterface node) {
-        DFS dfs = new DFS(node);
+        DFS dfs = new DFS();
         nodes = dfs.getListNodes();
         passByList();
     }
 
     public void visitWithBFS(NodeInterface node) {
-        BFS bfs = new BFS(node);
+        BFS bfs = new BFS();
         nodes = bfs.getListNodes();
         passByList();
     }

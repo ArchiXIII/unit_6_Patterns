@@ -2,6 +2,7 @@ package tree;
 
 import algorithms.BFS;
 import algorithms.PassStrategyInterface;
+import visitor.VisitorInterface;
 
 import java.util.*;
 
@@ -15,6 +16,8 @@ public class Tree implements TreeInterface, Iterable {
 
     private PassStrategyInterface strategy;
 
+    private VisitorInterface visitor;
+
     public Tree(){
         this.strategy = new BFS();
     }
@@ -25,10 +28,10 @@ public class Tree implements TreeInterface, Iterable {
 
     public void add(int value) {
         if(headNode == null){
-            headNode = new Node(value);
+            headNode = new Node(value, visitor);
             countNods++;
         }else {
-            addTo(headNode, new Node(value));
+            addTo(headNode, new Node(value, visitor));
         }
     }
 
@@ -94,5 +97,9 @@ public class Tree implements TreeInterface, Iterable {
         public void remove() {
 
         }
+    }
+
+    public void setVisitor(VisitorInterface visitor) {
+        this.visitor = visitor;
     }
 }

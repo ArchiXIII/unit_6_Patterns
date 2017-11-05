@@ -1,6 +1,7 @@
 import algorithms.DFS;
 import tree.Tree;
 import tree.TreeInterface;
+import visitor.Visitor;
 
 /**
  * Created by Черный on 02.11.2017.
@@ -8,6 +9,7 @@ import tree.TreeInterface;
 public class Controller {
     public static void main(String[] args) {
         TreeInterface tree = new Tree(new DFS());  //or without parameters
+        tree.setVisitor(new Visitor());
         tree.add(4);
         tree.add(5);
         tree.add(1);
@@ -20,7 +22,6 @@ public class Controller {
         }
         System.out.println();
 
-        Visitor visitor = new Visitor();
-        visitor.visitGraph(tree.getHeadNode());
+        tree.getHeadNode().visit();
     }
 }

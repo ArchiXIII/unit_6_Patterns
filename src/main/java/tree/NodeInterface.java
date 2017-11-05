@@ -1,5 +1,7 @@
 package tree;
 
+import visitor.Visitor;
+
 /**
  * Created by Archi on 01.11.2017.
  */
@@ -15,4 +17,6 @@ public interface NodeInterface {
     int getValue();
 
     void printInfo();
+
+    void visit();
 }

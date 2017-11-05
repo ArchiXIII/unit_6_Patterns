@@ -1,5 +1,7 @@
 package tree;
 
+import visitor.VisitorInterface;
+
 /**
  * Created by Archi on 01.11.2017.
  */
@@ -7,9 +9,11 @@ public class Node implements NodeInterface, Comparable<Node> {
     private Node leftNode;
     private Node rightNode;
     private int value;
+    private VisitorInterface visitor;
 
-    public Node(int value){
+    public Node(int value, VisitorInterface visitor){
         this.value = value;
+        this.visitor = visitor;
     }
 
     public int compareTo(Node o) {
@@ -47,5 +51,9 @@ public class Node implements NodeInterface, Comparable<Node> {
         }else {
             System.out.println("branch, value " + value);
         }
+    }
+
+    public void visit() {
+        visitor.visit(this);
     }
 }

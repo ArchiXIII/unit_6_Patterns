@@ -22,6 +22,7 @@ public class Controller {
         }
         System.out.println();
 
-        tree.getHeadNode().visit();
+        Client client = new Client();
+        client.byPass(tree.getHeadNode());
     }
 }

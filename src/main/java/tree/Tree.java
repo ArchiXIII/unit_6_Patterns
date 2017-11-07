@@ -16,8 +16,6 @@ public class Tree implements TreeInterface, Iterable {
 
     private PassStrategyInterface strategy;
 
-    private VisitorInterface visitor;
-
     public Tree(){
         this.strategy = new BFS();
     }
@@ -28,10 +26,10 @@ public class Tree implements TreeInterface, Iterable {
 
     public void add(int value) {
         if(headNode == null){
-            headNode = new Node(value, visitor);
+            headNode = new Node(value);
             countNods++;
         }else {
-            addTo(headNode, new Node(value, visitor));
+            addTo(headNode, new Node(value));
         }
     }
 
@@ -100,6 +98,17 @@ public class Tree implements TreeInterface, Iterable {
     }
 
     public void setVisitor(VisitorInterface visitor) {
-        this.visitor = visitor;
+        Stack<NodeInterface> stack = new Stack<NodeInterface>();
+        stack.push(headNode);
+        while (!stack.isEmpty()){
+            NodeInterface current = stack.pop();
+            current.setVisitor(visitor);
+            if (current.getLeftNode() != null) {
+                stack.push(current.getLeftNode());
+            }
+            if (current.getRightNode() != null) {
+                stack.push(current.getRightNode());
+            }
+        }
     }
 }

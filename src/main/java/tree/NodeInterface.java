@@ -1,11 +1,13 @@
 package tree;
 
-import visitor.Visitor;
+import visitor.VisitorInterface;
 
 /**
  * Created by Archi on 01.11.2017.
  */
 public interface NodeInterface {
+    void setVisitor(VisitorInterface visitor);
+
     NodeInterface getLeftNode();
 
     void setLeftNode(NodeInterface leftNode);

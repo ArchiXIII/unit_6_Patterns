@@ -11,9 +11,8 @@ public class Node implements NodeInterface, Comparable<Node> {
     private int value;
     private VisitorInterface visitor;
 
-    public Node(int value, VisitorInterface visitor){
+    public Node(int value){
         this.value = value;
-        this.visitor = visitor;
     }
 
     public int compareTo(Node o) {
@@ -23,6 +22,10 @@ public class Node implements NodeInterface, Comparable<Node> {
             return -1;
         }
         return 0;
+    }
+
+    public void setVisitor(VisitorInterface visitor) {
+        this.visitor = visitor;
     }
 
     public Node getLeftNode() {

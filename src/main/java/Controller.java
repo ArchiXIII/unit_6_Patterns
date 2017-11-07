@@ -9,7 +9,6 @@ import visitor.Visitor;
 public class Controller {
     public static void main(String[] args) {
         TreeInterface tree = new Tree(new DFS());  //or without parameters
-        tree.setVisitor(new Visitor());
         tree.add(4);
         tree.add(5);
         tree.add(1);
@@ -23,6 +22,6 @@ public class Controller {
         System.out.println();
 
         Client client = new Client();
-        client.byPass(tree.getHeadNode());
+        client.byPass(tree);
     }
 }

@@ -98,8 +98,6 @@ public class Tree implements TreeInterface, Iterable {
     }
 
     public void setVisitor(VisitorInterface visitor) {
-        Stack<NodeInterface> stack = new Stack<NodeInterface>();
-        stack.push(headNode);
         for (Object element : this) {
             NodeInterface current = (NodeInterface)element;
             current.setVisitor(visitor);

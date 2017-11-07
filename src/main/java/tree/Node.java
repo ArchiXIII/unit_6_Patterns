@@ -59,4 +59,8 @@ public class Node implements NodeInterface, Comparable<Node> {
     public void visit() {
         visitor.visit(this);
     }
+
+    public String toString(){
+        return "" + value;
+    }
 }

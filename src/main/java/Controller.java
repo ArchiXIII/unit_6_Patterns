@@ -17,7 +17,7 @@ public class Controller {
         tree.add(8);
 
         for (Object element : tree) {
-            System.out.println(element);
+            System.out.println(element.toString());
         }
         System.out.println();
 

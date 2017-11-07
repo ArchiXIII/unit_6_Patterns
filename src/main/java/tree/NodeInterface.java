@@ -21,4 +21,6 @@ public interface NodeInterface {
     void printInfo();
 
     void visit();
+
+    String toString();
 }

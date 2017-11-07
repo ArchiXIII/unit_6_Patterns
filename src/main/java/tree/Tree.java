@@ -61,11 +61,11 @@ public class Tree implements TreeInterface, Iterable {
         return countNods;
     }
 
-    public Iterator<Integer> iterator() {
+    public Iterator<NodeInterface> iterator() {
         return new Itr();
     }
 
-    private class Itr implements Iterator<Integer> {
+    private class Itr implements Iterator<NodeInterface> {
         int cursor;
         int lastRet = -1;
 
@@ -73,7 +73,7 @@ public class Tree implements TreeInterface, Iterable {
             return cursor != countNods;
         }
 
-        public Integer next() {
+        public NodeInterface next() {
             int i = cursor;
             if (i >= countNods)
                 throw new NoSuchElementException();
@@ -84,7 +84,7 @@ public class Tree implements TreeInterface, Iterable {
                 throw new ConcurrentModificationException();
             }
             cursor = i + 1;
-            return elementData.get(lastRet = i).getValue();
+            return elementData.get(lastRet = i);
         }
 
         private void fillAnList(List<NodeInterface> elementData){
@@ -100,15 +100,9 @@ public class Tree implements TreeInterface, Iterable {
     public void setVisitor(VisitorInterface visitor) {
         Stack<NodeInterface> stack = new Stack<NodeInterface>();
         stack.push(headNode);
-        while (!stack.isEmpty()){
-            NodeInterface current = stack.pop();
+        for (Object element : this) {
+            NodeInterface current = (NodeInterface)element;
             current.setVisitor(visitor);
-            if (current.getLeftNode() != null) {
-                stack.push(current.getLeftNode());
-            }
-            if (current.getRightNode() != null) {
-                stack.push(current.getRightNode());
-            }
         }
     }
 }

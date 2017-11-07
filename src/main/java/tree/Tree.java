@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Created by Archi on 01.11.2017.
  */
-public class Tree implements TreeInterface, Iterable {
+public class Tree implements TreeInterface {
     private Node headNode;
 
     private int countNods = 0;
@@ -98,9 +98,8 @@ public class Tree implements TreeInterface, Iterable {
     }
 
     public void setVisitor(VisitorInterface visitor) {
-        for (Object element : this) {
-            NodeInterface current = (NodeInterface)element;
-            current.setVisitor(visitor);
+        for (NodeInterface element : this) {
+            element.setVisitor(visitor);
         }
     }
 }
